@@ -11,7 +11,20 @@ class ArticlesController < ApplicationController
   def index
 
     @articles = Article.all
-    
+
+  end
+
+  def new
+
+  end
+
+  def create
+    title = params[:article][:title]
+    description = params[:article][:description]
+    @article = Article.new
+    @article.title = title
+    @article.description = description
+    @article.save
   end
 
 end
