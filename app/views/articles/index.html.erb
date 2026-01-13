@@ -1,0 +1,31 @@
+<h1>This is index page for articles</h1>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @articles.each do |article| %>
+            <tr>
+                <td>
+                    <%= article.id %>
+                </td>
+                <td>
+                    <%= article.title %>
+                </td>
+                <td>
+                    <%= article.description %>
+                </td>
+                <td>placeholder</td>
+            </tr>
+            <% end %>
+                <!-- doesnt come with an evaluation -->
+    </tbody>
+</table>
