@@ -1,6 +1,7 @@
 <h1>This is index page for articles</h1>
 <br>
 <br>
+
 <table>
     <thead>
         <tr>
@@ -23,10 +24,15 @@
                 <td>
                     <%= article.description %>
                 </td>
-                <td>placeholder</td>
+                <td style="display: flex; align-items: center;">
+                    <%= button_to "Show", article_path(article), method: :get %> 
+                    <%= button_to "Edit", edit_article_path(article), method: :get %> 
+                    <%= button_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" } %> 
+                </td>
             </tr>
             <% end %>
-                <!-- doesnt come with an evaluation -->
+                <!-- doesnt come with an evaluation i.e = in <% %>-->
+                 
     </tbody>
 </table>
 
@@ -34,4 +40,16 @@
 <br>
 <br>
 
-<%= link_to "Add new article" , new_article_path ,{ style: "color: black;" }%>
+<% flash.each do |key, value| %>
+    <ul>
+        <li><%= value %></li>
+    </ul>
+    <br>
+    <br>
+<%end%>
+
+<%= button_to "Add" , new_article_path, method: :get %>
+<h3>
+    <%= link_to "Go To Home Page", root_path, { style: "color:black" } %>
+</h3>
+<!-- <%= button_to "Add new article" , new_article_path ,{ style: "color: black;" }%> -->

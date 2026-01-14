@@ -60,8 +60,7 @@ class ArticlesController < ApplicationController
     
     @article = Article.find(params["id"])
 
-    check = @article.title == params[:article][:title] and @article.description == params[:article][:description]
-
+    check = ((@article.title == params[:article][:title]) and (@article.description == params[:article][:description]))
     if check
 
       flash[:alert] = "No changes were made."
@@ -79,9 +78,17 @@ class ArticlesController < ApplicationController
       else
 
         render :edit
-        
+
       end
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    if @article.destroy
+      flash[:notice] = "Article was deleted successfully."
+    end
+    redirect_to articles_path
   end
 
 end
