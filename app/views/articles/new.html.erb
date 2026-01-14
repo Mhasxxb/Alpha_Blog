@@ -1,16 +1,17 @@
 <h1>Add a new article.</h1>
 <% if @article.errors.any? %>
-    <h3>Error occured while creating your article. </h3>
+    <h3 style="color : red;" >Error occured while creating your article. </h3>
     <!-- <% @article.errors.full_messages.each do |err| %>
         <ul>
             <li>
-                <%= err %>
+                <%= err %> it will list all the errors.
             </li>
         </ul>
         <% end %> -->
     <ul>
         <li>
             <%= @article.errors.full_messages[0] %>
+            <!-- it will list only high priority err in each case -->
         </li>
     </ul>
 <% end %>

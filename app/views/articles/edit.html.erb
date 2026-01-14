@@ -1,15 +1,19 @@
-<h1>Edit your Article here!</h1>
+<h1>Update your Article here!</h1>
 
 <!-- In Rails, local: true in a form_with helper forces 
  the form to submit using a standard HTML request (page reload) rather than an AJAX (remote) request. 
  forms in rails use Ajax by default to prevent it from using it we toggle the local so that the form gets submitted
  via simple HTML request -->
  <% if @article.errors.any? %>
-    <h3>Error occured while updating the form</h3>
+    <h3 style="color : red;">Error occured while updating the form</h3>
     <ul>
         <li><%= @article.errors.full_messages[0] %></li>
     </ul>
  <%end%>
+
+ <!-- Form begins here -->
+
+
  <%= form_with(model: @article, local: true) do |form| %>
     <p>
         <%= form.label :title%>
