@@ -1,39 +1,5 @@
 <h1>Add a new article.</h1>
-<% if @article.errors.any? %>
-    <h3 style="color : red;" >Error occured while creating your article. </h3>
-    <!-- <% @article.errors.full_messages.each do |err| %>
-        <ul>
-            <li>
-                <%= err %> it will list all the errors.
-            </li>
-        </ul>
-        <% end %> -->
-    <ul>
-        <li>
-            <%= @article.errors.full_messages[0] %>
-            <!-- it will list only high priority err in each case -->
-        </li>
-    </ul>
-<% end %>
-                <%= form_with scope: :article, url: articles_path, local: true do |f| %>
-                    <p>
-                        <%= f.label :title %>
-                            <br>
-                            <%= f.text_field :title %>
-                    </p>
-                    <br>
-                    <br>
-                    <p>
-                        <%= f.label :description %>
-                            <br>
-                            <%= f.text_area :description %>
-                    </p>
-                    <p>
-                        <%= f.submit %>
-                    </p>
-                    <% end %>
 
-                        <br>
-                        <br>
-
-                       <%= button_to "Go back", articles_path, method: :get %>
+<!-- this is how to add partials in the layouts folder you will have to provide the whole path but here its not necessarry. -->
+ 
+<%= render 'articleForm' %>

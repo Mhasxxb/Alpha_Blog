@@ -1,0 +1,36 @@
+<% if @article.errors.any? %>
+    <h3 style="color : red;">Error occured while updating the form</h3>
+    <ul>
+        <li><%= @article.errors.full_messages[0] %></li>
+    </ul>
+<%end%>
+
+<!-- Form begins here -->
+
+<!-- In Rails, local: true in a form_with helper forces 
+the form to submit using a standard HTML request (page reload) rather than an AJAX (remote) request. 
+forms in rails use Ajax by default to prevent it from using it we toggle the local so that the form gets submitted
+via simple HTML request -->
+
+<%= form_with(model: @article, local: true) do |form| %>
+   <p>
+       <%= form.label :title%>
+       <br>
+       <%= form.text_field :title%>
+   </p>
+   <br>
+   <br>
+   <p>
+       <%= form.label :description %>
+       <br>
+       <%= form.text_area :description %>
+   </p>
+   <p>
+       <%= form.submit %>
+   </p>
+<% end %>
+
+<br>
+<br>
+
+<%= button_to "Go back", articles_path, method: :get %>

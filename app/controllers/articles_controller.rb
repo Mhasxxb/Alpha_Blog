@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
 
+  before_action :set_article, only: [ :show, :edit, :destroy, :update ] 
+
   def show  
     #article = Article.find(params[:id]) ###over here it is just a standard variable which is not passed in to your views
     #for passing it you will be needing an instance variable instead of a regular variable
     # byebug
-    @article = Article.find(params[:id])
     # @article = Article.find(params["id"])  ### both will work in the same way
+    # @article = Article.find(params["id"])  ### its being carried out with before_action
+
     if @article == nil
       byebug
     end
@@ -22,11 +25,15 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    title = params[:article][:title]
-    description = params[:article][:description]
-    @article = Article.new
-    @article.title = title
-    @article.description = description
+    # title = params[:article][:title]
+    # description = params[:article][:description]
+    # @article = Article.new
+    # @article.title = title
+    # @article.description = description
+    # this will work but best practice is:
+
+
+    @article = Article.new(params_of_article)
     if @article.save
       
       flash["notice"] = "Article creation was successful."
@@ -50,15 +57,15 @@ class ArticlesController < ApplicationController
     ##@article.description = "dfghjkldfghjkvbnk"       ##this will add these values on the input fields as the form is 
                                                        ##capturing the instace variable
 
-
-    @article = Article.find(params[:id])    ## This will get you the fields auto filled hence allowing you to 
+    #its being carried out with before_action
+    #@article = Article.find(params[:id])    ## This will get you the fields auto filled hence allowing you to 
                                             ## take full advantage of model: @article as it will access the url 
                                             ## for you as well as it will know which mode to access via the instance variable it got
   end
 
   def update 
     
-    @article = Article.find(params["id"])
+    # @article = Article.find(params["id"]) #its being carried out with before_action
 
     check = ((@article.title == params[:article][:title]) and (@article.description == params[:article][:description]))
     if check
@@ -68,7 +75,7 @@ class ArticlesController < ApplicationController
 
     else
 
-      check = @article.update(params.require(:article).permit(:title, :description))
+      check = @article.update(params_of_article)
 
       if check
 
@@ -84,11 +91,23 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id]) #its being carried out with before_action
     if @article.destroy
       flash[:notice] = "Article was deleted successfully."
     end
     redirect_to articles_path
+  end
+
+  private
+
+  def set_article
+
+    @article = Article.find(params[:id])
+
+  end
+
+  def params_of_article
+    params.require(:article).permit(:title, :description)
   end
 
 end
