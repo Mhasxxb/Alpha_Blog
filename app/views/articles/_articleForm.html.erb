@@ -11,26 +11,34 @@
 the form to submit using a standard HTML request (page reload) rather than an AJAX (remote) request. 
 forms in rails use Ajax by default to prevent it from using it we toggle the local so that the form gets submitted
 via simple HTML request -->
-
-<%= form_with(model: @article, local: true) do |form| %>
-   <p>
-       <%= form.label :title%>
-       <br>
-       <%= form.text_field :title%>
-   </p>
-   <br>
-   <br>
-   <p>
-       <%= form.label :description %>
-       <br>
-       <%= form.text_area :description %>
-   </p>
-   <p>
-       <%= form.submit %>
-   </p>
-<% end %>
+<div class="container" style="margin-top: 3%;">
+    <div class="card">
+        <div class="card-header text-center">
+            <%= @text %> your blog
+        </div>
+        <div class="card-body" style="text-align: justify;">
+        <%= form_with(model: @article, local: true) do |form| %>
+           <div class="form-group row" style="display: flex; justify-content: space-around; width: 80%; margin-left: 9%;">
+               <%= form.label :title, class: "col-2 col-form-label" %>
+               <%= form.text_field :title, class: "col-8 form-control" %>
+           </div>
+           <br>
+           <br>
+           <div class="form-group row" style="display: flex; justify-content: space-around; width: 80%; margin-left: 9%;">
+               <%= form.label :description, class: "col-2 col-form-label" %>
+               <%= form.text_area :description, class: "col-8 form-control", rows: 5 %>
+           </div>
+            <div style="text-align: center; margin: 0.3%;">
+               <%= form.submit class: "article_card_btn", id: "edit_btn"%>
+            </div>
+        <% end %>
+        <div style="text-align: center; margin: 0.3%;">
+           <%= button_to "Go back", articles_path, method: :get, class: "article_card_btn", id: "show_btn" %>
+        </div>
+        
+        </div>
+    </div>
+</div>
 
 <br>
 <br>
-
-<%= button_to "Go back", articles_path, method: :get %>

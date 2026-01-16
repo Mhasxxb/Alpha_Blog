@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new()
+    @text = "Create"
   end
 
   def create
@@ -50,7 +51,7 @@ class ArticlesController < ApplicationController
   def edit
     #@article = Article.new                 ## this will let you pass through the GET request easily
 
-    
+    @text = "Edit"
 
     ##@article = Article.new
     ##@article.title = "fghjk"
