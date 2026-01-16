@@ -1,4 +1,6 @@
-<h1>This is the show functionality!</h1>
+<!-- <h1>This is the show functionality!</h1> -->
+
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Your blog</h1>
 
 <% flash.each do |key, value|%>
     <br>
@@ -10,32 +12,64 @@
     </ul>
     <br>
     <br>
-    <% end %>
+<% end %>
+<!-- <p><strong>Title: </strong>
+    <%= @article.title %>
+</p>
+<p><strong>Description: </strong>
+    <%= @article.description %>
+</p>
+<p><strong>Created at: </strong>
+    <%= @article.created_at.to_date %>
+</p>
+<% if @article.created_at != @article.updated_at%>
+    <p><strong>updated at: </strong>
+        <%= @article.updated_at %>
+    </p>
+<%end%> -->
+<div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 70px;">
+    <div class="card">
+        <div class="card-header">
+            <%= @article.id %>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                <%= @article.title %>
+            </h5>
+            <p class="card-text">
+                <%= @article.description %>
+            </p>
+            <div style="display: flex; justify-content: space-between;"">
+                <div style="display: flex; justify-content: space-between; width:10%">
+                    <%= button_to "Edit" , edit_article_path(@article), method: :get, class: "article_card_btn", id: "edit_btn" %>
+                    <%= button_to "Delete" , article_path(@article), method: :delete, class: "article_card_btn", id: "del_btn" , data: { confirm: "Are you sure?" } %>
+                </div>
+                <div>
+                    <%= button_to "Go back" , articles_path(@article), method: :get, class: "article_card_btn", id: "show_btn"%>
+                </div>
+            </div>
 
+        </div>
+        <div class="card-footer text-muted" style="display: flex; justify-content: space-between;">
+            <p>Created on: <%= @article.created_at.to_date %> @ <%= @article.created_at.strftime("%I:%M %p") %></p>
+            <% if @article.created_at.to_date == @article.updated_at.to_date and @article.created_at != @article.updated_at%>
+                <p>Updated at: <%= @article.updated_at.strftime("%I:%M %p") %> </p>
+            <% elsif @article.created_at.to_date != @article.updated_at.to_date%>
+                <p>Updated on: <%= @article.updated_at.to_date %> @ <%= @article.updated_at.strftime("%I:%M %p") %> </p>
+            <%end%>
+        </div>
+    </div>
+</div>
 
-        <p><strong>Title: </strong>
-            <%= @article.title %>
-        </p>
-        <p><strong>Description: </strong>
-            <%= @article.description %>
-        </p>
-        <p><strong>Created at: </strong>
-            <%= @article.created_at.to_date %>
-        </p>
-        <% if @article.created_at != @article.updated_at%>
-            <p><strong>updated at: </strong>
-            <%= @article.updated_at %>
-        </p>
-        <%end%>
-        <br>
-        <br>
+<br>
+<br>
 
         <!-- <%= button_to "Delete", @article, method: :delete %> -->
         <!-- both will work the same way. -->
         
-        <div style="display: flex;">
-            <%= button_to "Delete", article_path, method: :delete %>
-            <%= button_to "Edit", edit_article_path(@article), method: :get %>
-            <%= button_to "Go back", articles_path, method: :get %>
-        </div>
+<!-- <div style="display: flex;">
+    <%= button_to "Delete", article_path, method: :delete %>
+    <%= button_to "Edit", edit_article_path(@article), method: :get %>
+    <%= button_to "Go back", articles_path, method: :get %>
+</div> -->
         

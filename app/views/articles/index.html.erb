@@ -1,8 +1,14 @@
-<h1>This is index page for articles</h1>
-<br>
-<br>
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Articles</h1>
 
-<table>
+<h5 style="text-align: center;"><%= button_to "Add new" , new_article_path, method: :get, class: "article_card_btn", id: "add_btn" %></h5>
+
+<% flash.each do |key, value| %>
+    <ul>
+        <li><%= value %></li>
+    </ul>
+<%end%>
+
+<!-- <table>
     <thead>
         <tr>
             <th>Id</th>
@@ -31,25 +37,43 @@
                 </td>
             </tr>
             <% end %>
-                <!-- doesnt come with an evaluation i.e = in <% %>-->
+                 doesnt come with an evaluation i.e = in <% %>
                  
     </tbody>
-</table>
+</table> -->
+
+<% @articles.each do |article| %>
+    <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
+        <div class="card">
+            <div class="card-header">
+                <%= article.id %>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h5>
+                <p class="card-text"><%= truncate(article.description, length: 140) %></p>
+
+                <div style="display: flex; justify-content: space-between;"">
+                    <div style="display: flex; justify-content: space-between; width:10%">
+                        <%= button_to "Show", article_path(article), method: :get, class: "article_card_btn", id: "show_btn" %> 
+                        <%= button_to "Edit", edit_article_path(article), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                    </div> 
+                    <%= button_to "Delete", article_path(article), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
+                </div>
+                
+            </div>
+            <div class="card-footer text-muted">
+                Created <strong><%= time_ago_in_words(article.created_at) %></strong> ago
+            </div>
+        </div>
+</div>
+<% end %>
 
 <br>
 <br>
 <br>
+<!-- <%= button_to "Add" , new_article_path, method: :get %> -->
 
-<% flash.each do |key, value| %>
-    <ul>
-        <li><%= value %></li>
-    </ul>
-    <br>
-    <br>
-<%end%>
-
-<%= button_to "Add" , new_article_path, method: :get %>
-<h3>
+<!-- <h3>
     <%= link_to "Go To Home Page", root_path, { style: "color:black; text-decoration: none;" } %>
-</h3>
+</h3> -->
 <!-- <%= button_to "Add new article" , new_article_path ,{ style: "color: black;" }%> -->
