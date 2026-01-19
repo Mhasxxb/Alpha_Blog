@@ -3,9 +3,20 @@
 <h5 style="text-align: center;"><%= button_to "Add new" , new_article_path, method: :get, class: "article_card_btn", id: "add_btn" %></h5>
 
 <% flash.each do |key, value| %>
-    <ul>
+    <!-- <ul>
         <li><%= value %></li>
-    </ul>
+    </ul> -->
+    <div class="container" style="margin-top: 3%;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Deleted.</h4>
+            <ul>
+                <li><%= value %></li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
 <%end%>
 
 <!-- <table>
@@ -52,12 +63,14 @@
                 <h5 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h5>
                 <p class="card-text"><%= truncate(article.description, length: 140) %></p>
 
-                <div style="display: flex; justify-content: space-between;"">
-                    <div style="display: flex; justify-content: space-between; width:10%">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:13%;">
                         <%= button_to "Show", article_path(article), method: :get, class: "article_card_btn", id: "show_btn" %> 
                         <%= button_to "Edit", edit_article_path(article), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                        <%= button_to "Delete", article_path(article), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
                     </div> 
-                    <%= button_to "Delete", article_path(article), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
                 </div>
                 
             </div>

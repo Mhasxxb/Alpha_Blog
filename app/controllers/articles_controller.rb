@@ -43,6 +43,7 @@ class ArticlesController < ApplicationController
     else
 
       # render "new" works the same way
+      @text = "Create"
       render :new
 
     end
@@ -84,7 +85,7 @@ class ArticlesController < ApplicationController
         redirect_to @article
 
       else
-
+        @text = "Edit"
         render :edit
 
       end
@@ -93,10 +94,10 @@ class ArticlesController < ApplicationController
 
   def destroy
     # @article = Article.find(params[:id]) #its being carried out with before_action
-    if @article.destroy
-      flash[:notice] = "Article was deleted successfully."
-    end
+    @article.destroy
+    flash[:notice] = "Article was deleted successfully."
     redirect_to articles_path
+
   end
 
   private
