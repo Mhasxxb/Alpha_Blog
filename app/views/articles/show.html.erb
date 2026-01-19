@@ -36,8 +36,8 @@
 <%end%> -->
 <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 70px;">
     <div class="card">
-        <div class="card-header">
-            <%= @article.id %>
+        <div class="card-header text-muted text-center">
+            <p class="mb-0 font-italic">By: <span class="font-italic"><%= @article.user.username %></span></p>
         </div>
         <div class="card-body">
             <h5 class="card-title">
@@ -46,8 +46,8 @@
             <p class="card-text">
                 <%= @article.description %>
             </p>
-            <div style="display: flex; justify-content: space-between;"">
-                <div style="display: flex; justify-content: space-between; width:10%">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;"">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; width:10%;">
                     <%= button_to "Edit" , edit_article_path(@article), method: :get, class: "article_card_btn", id: "edit_btn" %>
                     <%= button_to "Delete" , article_path(@article), method: :delete, class: "article_card_btn", id: "del_btn" , data: { confirm: "Are you sure?" } %>
                 </div>
@@ -57,7 +57,7 @@
             </div>
 
         </div>
-        <div class="card-footer text-muted" style="display: flex; justify-content: space-between;">
+        <div class="card-footer text-muted" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
             <p>Created on: <%= @article.created_at.to_date %> @ <%= @article.created_at.strftime("%I:%M %p") %></p>
             <% if @article.created_at.to_date == @article.updated_at.to_date and @article.created_at != @article.updated_at%>
                 <p>Updated at: <%= @article.updated_at.strftime("%I:%M %p") %> </p>

@@ -33,8 +33,8 @@ class ArticlesController < ApplicationController
     # @article.description = description
     # this will work but best practice is:
 
-
     @article = Article.new(params_of_article)
+    @article.user = User.last
     if @article.save
       
       flash["notice"] = "Article creation was successful."
