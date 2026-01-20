@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   # resources :articles, only: [:show, "index", :new, "create", :edit, "update"] ##read the comment
   resources :articles
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
 
+  resources :users, except: ['new', 'create']
 end
 
 # 1. Memory Usage (Object Recycling)

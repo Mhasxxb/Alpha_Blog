@@ -1,5 +1,3 @@
-
-
 a {
     color: #000000;
 }
@@ -8,6 +6,15 @@ a:hover{
     color:black;
     text-decoration: none;
 }
+.go-back-home{
+    color:rgb(24, 175, 24); 
+    margin: 2%;
+}
+.go-back-home:hover{
+    color:rgb(24, 175, 24); 
+    text-decoration: underline;
+}
+
 body{
     background-color: beige;
 }
@@ -56,7 +63,7 @@ h1, h2, h3, h4, h5, h6{
     margin:0px;
     padding: 0px;
 }
-.article_card_btn{
+.article_card_btn, .card_btn{
     background-color: white;
 }
 #show_btn{
@@ -65,7 +72,7 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 5px;
     padding: 4px 6px;
 }
-#edit_btn{
+#edit_btn,#signup_btn{
     color: rgb(75, 162, 184);
     border: rgb(75, 162, 184) solid 1px;
     border-radius: 5px;
@@ -90,7 +97,7 @@ h1, h2, h3, h4, h5, h6{
     color: white;
     transition: 0.3s;
 }
-#edit_btn:hover{
+#edit_btn:hover, #signup_btn:hover{
     background-color: rgb(75, 162, 184);
     border: rgb(75, 162, 184) solid 1px;
     color: white;
