@@ -1,10 +1,19 @@
-module ApplicationHelper
+  module ApplicationHelper
 
-  def gravatar_for(user, options = { size: 80 })
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
-    size = options[:size]
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.username, class: "rounded shadow mx-auto d-block")
+    def gravatar_for(user)
+      email_address = user.email
+  
+      # Create the SHA256 hash
+      hash = Digest::SHA256.hexdigest(email_address)
+
+      # Set default URL and size parameters
+      default = "https://www.example.com/default.jpg"
+      size = 150
+
+      # Compile the full URL with URI encoding for the parameters
+      params = URI.encode_www_form('d' => default, 's' => size)
+      gravatar_url = "https://www.gravatar.com/avatar/#{hash}?=#{params}"
+      image_tag(gravatar_url, alt: user.username, class: "rounded-circle", style: "border: solid #919191 5px;")
+    end
+
   end
-
-end

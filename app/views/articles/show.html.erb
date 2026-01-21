@@ -1,6 +1,6 @@
 <!-- <h1>This is the show functionality!</h1> -->
 
-<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Your blog</h1>
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Blog</h1>
 
 <% flash.each do |key, value|%>
     <!-- <ul>
@@ -40,9 +40,9 @@
             <p class="mb-0 font-italic">By: <span class="font-italic"><%= @article.user.username %></span></p>
         </div>
         <div class="card-body">
-            <h5 class="card-title">
+            <h2 class="card-title">
                 <%= @article.title %>
-            </h5>
+            </h2>
             <p class="card-text">
                 <%= @article.description %>
             </p>

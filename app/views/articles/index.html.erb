@@ -60,7 +60,7 @@
                 <p class="mb-0 font-italic">By: <span class="font-italic"><%= article.user.username if article.user %></span></p>
             </div>
             <div class="card-body">
-                <h5 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h5>
+                <h2 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h2>
                 <p class="card-text"><%= truncate(article.description, length: 140) %></p>
 
                 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
