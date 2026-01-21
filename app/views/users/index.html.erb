@@ -1,0 +1,50 @@
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Users</h1>
+
+<!-- <h5 style="text-align: center;"><%= button_to "Add new" , new_article_path, method: :get, class: "article_card_btn", id: "add_btn" %></h5> -->
+
+<!-- <% flash.each do |key, value| %>
+    <!-- <ul>
+        <li><%= value %></li>
+    </ul>
+    <div class="container" style="margin-top: 0.2%;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Deleted.</h4>
+            <ul>
+                <li><%= value %></li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+<%end%> -->
+
+<% @users.each do |user| %>
+    <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
+        <div class="card">
+             <div class="card-header text-muted text-center">
+                <p class="mb-0 font-italic">@<span class="font-italic"><%= user.username %></span></p>
+            </div>
+            <div class="card-body text-center">
+                <%= gravatar_for(user) %>
+                <% if user.articles.count != 0 %>
+                    <p style="margin: 0.8%;">Contributed with <%= user.articles.count %> articles</p>
+                <%end%>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:10%;">
+                        <%= button_to "Show", user_path(user), method: :get, class: "article_card_btn", id: "show_btn" %> 
+                        <%= button_to "Edit", edit_user_path(user), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                    </div>
+                    <!-- <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                        <%= button_to "Delete", user_path(user), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
+                    </div>  -->
+                </div>
+                
+            </div>
+            <div class="card-footer text-muted">
+                Created <strong><%= time_ago_in_words(user.created_at) %></strong> ago
+            </div>
+        </div>
+</div>
+<% end %>
+
