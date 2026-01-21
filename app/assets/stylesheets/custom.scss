@@ -1,0 +1,118 @@
+a {
+    color: #000000;
+}
+
+a:hover{
+    color:black;
+    text-decoration: none;
+}
+.go-back-home{
+    color:rgb(24, 175, 24); 
+    margin: 2%;
+}
+.go-back-home:hover{
+    color:rgb(24, 175, 24); 
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+body{
+    background-color: beige;
+}
+html, body{
+    height: 100%;
+}
+#page-content {
+  flex: 1 0 auto;
+}
+#sticky-footer{
+    flex-shrink: 0;
+}
+#logo{
+    float: left;
+    font-size: 1.7em;
+    text-transform: uppercase;
+    letter-spacing: -1.8px;
+}
+#home_container{
+    margin-top: 70px ;
+    text-align: center;
+}
+#home_jumbotron{
+    background-color: rgb(19, 74, 19) !important;
+    color: bisque;
+}
+#sign-up-btn{
+    background-color: rgb(91, 172, 91);
+    border: #000000 solid 0.5px;
+    color: #000000;
+}
+#sign-up-btn:hover{
+    background-color: rgb(67, 123, 67);
+    border: #000000 solid 0.5px;
+    color: #000000;
+}
+.navbar{    
+    background-color: rgb(153, 215, 153) !important;
+    box-shadow: 0px 2px #b2b0b0 !important;
+}
+
+.dropdown-menu {
+    background-color: rgb(123, 213, 123);
+}
+h1, h2, h3, h4, h5, h6{
+    margin:0px;
+    padding: 0px;
+}
+.article_card_btn, .card_btn{
+    background-color: white;
+}
+#show_btn{
+    color: rgb(24, 175, 24);
+    border: rgb(24, 175, 24) solid 1px;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+#edit_btn,#signup_btn{
+    color: rgb(75, 162, 184);
+    border: rgb(75, 162, 184) solid 1px;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+#del_btn{
+    color: rgb(222, 20, 20);
+    border: rgb(222, 20, 20) solid 1px;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+#add_btn{
+    color: rgb(75, 162, 184);
+    background-color: beige;
+    border: rgb(75, 162, 184) solid 1px;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+#show_btn:hover{
+    background-color: rgb(24, 175, 24);
+    border: rgb(24, 175, 24) solid 1px;
+    color: white;
+    transition: 0.3s;
+}
+#edit_btn:hover, #signup_btn:hover{
+    background-color: rgb(75, 162, 184);
+    border: rgb(75, 162, 184) solid 1px;
+    color: white;
+    transition: 0.3s;
+}
+#del_btn:hover{
+    background-color: rgb(222, 20, 20);
+    border: rgb(222, 20, 20) solid 1px;
+    color: white;
+    transition: 0.3s;
+}
+#add_btn:hover{
+    background-color: rgb(75, 162, 184);
+    border: rgb(75, 162, 184) solid 1px;
+    color: white;
+    transition: 0.3s;
+}

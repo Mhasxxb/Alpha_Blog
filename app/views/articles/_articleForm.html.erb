@@ -1,0 +1,38 @@
+<%= render "shared/errors", obj: @article %>
+<!-- Form begins here -->
+
+<!-- In Rails, local: true in a form_with helper forces 
+the form to submit using a standard HTML request (page reload) rather than an AJAX (remote) request. 
+forms in rails use Ajax by default to prevent it from using it we toggle the local so that the form gets submitted
+via simple HTML request -->
+<div class="container shadow p-3 mb-5 bg-white rounded" style="margin-top: 3%;">
+    <div class="card">
+        <div class="card-header text-center">
+            <%= @text %> your blog
+        </div>
+        <div class="card-body" style="text-align: justify;">
+        <%= form_with(model: @article, local: true) do |form| %>
+           <div class="form-group row" style="display: flex; justify-content: space-around; width: 80%; margin-left: 9%;">
+               <%= form.label :title, class: "col-2 col-form-label" %>
+               <%= form.text_field :title, class: "col-8 form-control" %>
+           </div>
+           <br>
+           <br>
+           <div class="form-group row" style="display: flex; justify-content: space-around; width: 80%; margin-left: 9%;">
+               <%= form.label :description, class: "col-2 col-form-label" %>
+               <%= form.text_area :description, class: "col-8 form-control", rows: 5 %>
+           </div>
+            <div style="text-align: center; margin: 0.3%;">
+               <%= form.submit class: "article_card_btn", id: "edit_btn"%>
+            </div>
+        <% end %>
+        <div style="text-align: center; margin-top: 2%;">
+            <%= link_to "[ Go back ]", articles_path(@article.id), method: :get, class:"go-back-home" %>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+<br>
+<br>

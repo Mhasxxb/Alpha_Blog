@@ -1,0 +1,92 @@
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Articles</h1>
+
+<h5 style="text-align: center;"><%= button_to "Add new" , new_article_path, method: :get, class: "article_card_btn", id: "add_btn" %></h5>
+
+<% flash.each do |key, value| %>
+    <!-- <ul>
+        <li><%= value %></li>
+    </ul> -->
+    <div class="container" style="margin-top: 0.2%;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Deleted.</h4>
+            <ul>
+                <li><%= value %></li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+<%end%>
+
+<!-- <table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @articles.each do |article| %>
+            <tr>
+                <td>
+                    <%= article.id %>
+                </td>
+                <td>
+                    <%= article.title %>
+                </td>
+                <td>
+                    <%= article.description %>
+                </td>
+                <td style="display: flex; align-items: center;">
+                    <%= button_to "Show", article_path(article), method: :get %> 
+                    <%= button_to "Edit", edit_article_path(article), method: :get %> 
+                    <%= button_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" } %> 
+                </td>
+            </tr>
+            <% end %>
+                 doesnt come with an evaluation i.e = in <% %>
+                 
+    </tbody>
+</table> -->
+
+<% @articles.each do |article| %>
+    <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
+        <div class="card">
+             <div class="card-header text-muted text-center">
+                <p class="mb-0 font-italic">By: <span class="font-italic"><%= article.user.username if article.user %></span></p>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h2>
+                <p class="card-text"><%= truncate(article.description, length: 140) %></p>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:10%;">
+                        <%= button_to "Show", article_path(article), method: :get, class: "article_card_btn", id: "show_btn" %> 
+                        <%= button_to "Edit", edit_article_path(article), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                        <%= button_to "Delete", article_path(article), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
+                    </div> 
+                </div>
+                
+            </div>
+            <div class="card-footer text-muted">
+                Created <strong><%= time_ago_in_words(article.created_at) %></strong> ago
+            </div>
+        </div>
+</div>
+<% end %>
+
+<br>
+<br>
+<br>
+<!-- <%= button_to "Add" , new_article_path, method: :get %> -->
+
+<!-- <h3>
+    <%= link_to "Go To Home Page", root_path, { style: "color:black; text-decoration: none;" } %>
+</h3> -->
+<!-- <%= button_to "Add new article" , new_article_path ,{ style: "color: black;" }%> -->
