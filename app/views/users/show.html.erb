@@ -20,6 +20,8 @@
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
                 <a href="" class="go-back-home">@<%= @user.username %>'s profile</a>
+                <%= link_to "Edit your profile", edit_user_path(@user), class: "go-back-home" %>
+                <!-- <a href="edit" class="go-back-home">Edit your profile</a> -->
               </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
@@ -75,6 +77,7 @@
   function showAndHide(){
     const toggle = document.getElementById("toggle")
     const content = document.getElementById("content")
+    content = document.get
 
     console.log(content);
     if(content.style.display === "block"){

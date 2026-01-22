@@ -11,21 +11,23 @@
     <div class="collapse navbar-collapse" style="margin-left: 3%;" id="navbarSupportedContent">
         <!-- <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</p> -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><%= link_to "Article", articles_path, {class: "nav-link"} %></li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <%= link_to "User", users_path, {class: "nav-link"} %>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Article
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <%= link_to "Articles", articles_path, {class: "dropdown-item"} %>
+                    <%= link_to "Add article", new_article_path, {class: "dropdown-item"} %>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Close</a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
