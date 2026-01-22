@@ -35,6 +35,7 @@ def get_user_params
 end
 
 def get_user
+  # byebug
   @user = User.find(params[:id])
 end
 

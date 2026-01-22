@@ -23,7 +23,7 @@
     <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
         <div class="card">
              <div class="card-header text-muted text-center">
-                <p class="mb-0 font-italic">@<span class="font-italic"><%= user.username %></span></p>
+                <p class="mb-0 font-italic"><span class="font-italic"><%= link_to "@#{user.username}", user_path(user) %></span></p>
             </div>
             <div class="card-body text-center">
                 <%= gravatar_for(user) %>
