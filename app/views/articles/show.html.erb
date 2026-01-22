@@ -1,6 +1,6 @@
 <!-- <h1>This is the show functionality!</h1> -->
 
-<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Blog</h1>
+
 
 <% flash.each do |key, value|%>
     <!-- <ul>
@@ -8,7 +8,7 @@
             <%= value %>
         </li>
     </ul> -->
-    <div class="container" style="margin-top: 3%;">
+    <div class="container" style="margin-top: 0.2%;">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h4 class="alert-heading">Success</h4>
             <ul>
@@ -20,6 +20,8 @@
         </div>
     </div>
 <% end %>
+
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Blog</h1>
 <!-- <p><strong>Title: </strong>
     <%= @article.title %>
 </p>
@@ -37,7 +39,7 @@
 <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 70px;">
     <div class="card">
         <div class="card-header text-muted text-center">
-            <p class="mb-0 font-italic">By: <span class="font-italic"><%= @article.user.username %></span></p>
+            <p class="mb-0 font-italic">By: <span class="font-italic"><%= link_to "#{@article.user.username}", user_path(@article.user.id), style:"color:#717171" %></span></p>
         </div>
         <div class="card-body">
             <h2 class="card-title">

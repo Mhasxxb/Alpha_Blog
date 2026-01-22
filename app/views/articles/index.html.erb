@@ -1,4 +1,4 @@
-<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Articles</h1>
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Blogs</h1>
 
 <!-- <h5 style="text-align: center;"><%= button_to "Add new" , new_article_path, method: :get, class: "article_card_btn", id: "add_btn" %></h5> -->
 
@@ -57,7 +57,7 @@
     <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
         <div class="card">
              <div class="card-header text-muted text-center">
-                <p class="mb-0 font-italic">By: <span class="font-italic"><%= article.user.username if article.user %></span></p>
+                <p class="mb-0 font-italic">By: <span class="font-italic"><%= link_to "#{article.user.username}", user_path(article.user.id), style:"color:#717171" %></span></p>
             </div>
             <div class="card-body">
                 <h2 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h2>
