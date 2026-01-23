@@ -21,7 +21,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to "Articles", articles_path, {class: "dropdown-item"} %>
-                    <%= link_to "Add article", new_article_path, {class: "dropdown-item"} %>
+                    <% if logged_in? %>
+                        <%= link_to "Add article", new_article_path, {class: "dropdown-item"} %>
+                    <%end%>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Close</a>
                 </div>
@@ -29,9 +31,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="/about">About us</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+            <% if logged_in? %>
+                <li class="nav-item">
+                    
+                    <%= link_to "Logout", logout_path, class:"nav-link", method: :delete, data: { confirm: "Are you sure?" } %>
+                </li>
+            <%else%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            <%end%>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" style="background-color: beige;" aria-label="Search">

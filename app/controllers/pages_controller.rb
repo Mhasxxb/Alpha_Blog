@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-  #   render html: "Chaaaaa"
+    redirect_to user_path(current_user.id) if logged_in?
   end
   def about
   end

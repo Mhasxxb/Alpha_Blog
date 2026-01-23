@@ -15,5 +15,4 @@
       gravatar_url = "https://www.gravatar.com/avatar/#{hash}?=#{params}"
       image_tag(gravatar_url, alt: user.username, class: "rounded-circle", style: "border: solid #919191 5px;")
     end
-
   end

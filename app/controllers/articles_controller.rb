@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
   def index
 
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 3)
 
   end
 
@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
     # this will work but best practice is:
 
     @article = Article.new(params_of_article)
-    @article.user = User.last
+    @article.user = current_user
     if @article.save
       
       flash["notice"] = "Article creation was successful."

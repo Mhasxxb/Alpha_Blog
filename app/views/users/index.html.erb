@@ -19,6 +19,12 @@
     </div>
 <%end%> -->
 
+
+<div class="flickr_pagination" style="margin: 0% 40%">
+    <%= will_paginate @users, previous_label: "Previous", next_label: "Next", :container => true %>
+</div>
+
+
 <% @users.each do |user| %>
     <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
         <div class="card">
@@ -32,8 +38,10 @@
                 <%end%>
                 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:10%;">
-                        <%= button_to "Show", user_path(user), method: :get, class: "article_card_btn", id: "show_btn" %> 
-                        <%= button_to "Edit", edit_user_path(user), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                        <%= button_to "View", user_path(user), method: :get, class: "article_card_btn", id: "show_btn" %> 
+                        <% if logged_in? && current_user.id == user.id %>
+                            <%= button_to "Edit", edit_user_path(user), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                        <%end%>
                     </div>
                     <!-- <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                         <%= button_to "Delete", user_path(user), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
@@ -47,4 +55,8 @@
         </div>
 </div>
 <% end %>
+<div class="flickr_pagination">
+    <%= will_paginate @users, previous_label: "Previous", next_label: "Next", :container => true %>
+</div>
+
 

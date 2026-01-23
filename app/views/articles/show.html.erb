@@ -49,13 +49,19 @@
                 <%= @article.description %>
             </p>
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap;"">
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; width:10%;">
-                    <%= button_to "Edit" , edit_article_path(@article), method: :get, class: "article_card_btn", id: "edit_btn" %>
-                    <%= button_to "Delete" , article_path(@article), method: :delete, class: "article_card_btn", id: "del_btn" , data: { confirm: "Are you sure?" } %>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; width:11%;">
+                    <% if logged_in? && current_user.id == @article.user_id %>
+                        <%= button_to "Edit" , edit_article_path(@article), method: :get, class: "article_card_btn", id: "edit_btn" %>
+                        <%= button_to "Delete" , article_path(@article), method: :delete, class: "article_card_btn", id: "del_btn" , data: { confirm: "Are you sure?" } %>
+                    <%else%>
+                        <%= button_to "Go back" , articles_path(@article), method: :get, class: "article_card_btn", id: "show_btn"%>
+                    <%end%>
                 </div>
-                <div>
-                    <%= button_to "Go back" , articles_path(@article), method: :get, class: "article_card_btn", id: "show_btn"%>
-                </div>
+                <% if logged_in? && current_user.id == @article.user_id %>
+                    <div>
+                        <%= button_to "Go back" , articles_path(@article), method: :get, class: "article_card_btn", id: "show_btn"%>
+                    </div>
+                <%end%>
             </div>
 
         </div>
