@@ -1,21 +1,19 @@
 <!-- <%= render "shared/errors", obj: @user %> -->
-
 <% flash.each do |key, value| %>
-    <!-- <ul>
+  <div class="container" style="margin-top: 0.2%;">
+    <div class="alert alert-<%= key == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert">
+      <h4 class="alert-heading">
+        <%= key == "alert" ? "An error occurred." : "Success" %>
+      </h4>
+      <ul>
         <li><%= value %></li>
-    </ul> -->
-    <div class="container" style="margin-top: 0.2%;">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">An error occured.</h4>
-            <ul>
-                <li><%= value %></li>
-            </ul>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+      </ul>
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
     </div>
-<%end%>
+  </div> 
+<% end %>
 
 <div class="container shadow p-3 mb-5 bg-white col-5  rounded" style="margin-top: 3%;">
     <div class="card">

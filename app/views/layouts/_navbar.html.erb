@@ -9,8 +9,7 @@
     </button>
 
     <div class="collapse navbar-collapse" style="margin-left: 3%;" id="navbarSupportedContent">
-        <!-- <p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</p> -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" style="margin-left: 1%;">
             <li class="nav-item">
                 <%= link_to "Bloggers", users_path, {class: "nav-link"} %>
             </li>
@@ -25,18 +24,30 @@
                         <%= link_to "Add article", new_article_path, {class: "dropdown-item"} %>
                     <%end%>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Close</a>
+                    <a class="dropdown-item" href="">Close</a>
                 </div>
             </li>
+            <%if logged_in? %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <%= "(Admin) " if current_user.admin %><%= logged_in? ? current_user.username.capitalize : nil %>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%= link_to "Profile", user_path(current_user.id), {class: "dropdown-item"} %>
+                        <% if logged_in? %>
+                            <%= link_to "Edit details", edit_user_path(current_user.id), {class: "dropdown-item"} %>
+                            <%= link_to "Logout", logout_path, class: "dropdown-item" , method: :delete, data: { confirm: "You will be logged out!" } %>
+                        <%end%>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="">Close</a>
+                    </div>
+                </li>
+            <%end%>
             <li class="nav-item">
                 <a class="nav-link" href="/about">About us</a>
             </li>
-            <% if logged_in? %>
-                <li class="nav-item">
-                    
-                    <%= link_to "Logout", logout_path, class:"nav-link", method: :delete, data: { confirm: "Are you sure?" } %>
-                </li>
-            <%else%>
+            <% if !logged_in? %>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>

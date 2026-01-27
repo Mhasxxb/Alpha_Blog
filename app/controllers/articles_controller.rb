@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [ :show, :edit, :destroy, :update ] 
+  before_action :require_user, except: [ :show, :index ]
+  before_action :require_same_user, only: [ :edit, :update, :destroy ]
+  
 
   def show  
     #article = Article.find(params[:id]) ###over here it is just a standard variable which is not passed in to your views
@@ -111,5 +114,12 @@ class ArticlesController < ApplicationController
   def params_of_article
     params.require(:article).permit(:title, :description)
   end
+
+  def require_same_user
+  if current_user != @article.user && !current_user.admin
+    flash[:alert] = "You can only edit your own article."
+    redirect_to @article
+  end
+end
 
 end

@@ -37,10 +37,12 @@
                     <p style="margin: 0.8%;">Contributed with <%= user.articles.count %> articles</p>
                 <%end%>
                 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:10%;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:11%;">
                         <%= button_to "View", user_path(user), method: :get, class: "article_card_btn", id: "show_btn" %> 
                         <% if logged_in? && current_user.id == user.id %>
                             <%= button_to "Edit", edit_user_path(user), method: :get, class: "article_card_btn", id: "edit_btn" %>    
+                        <% elsif logged_in? && current_user.admin %>
+                            <%= button_to "Delete", user_path(user), method: :delete, class: "article_card_btn", id: "del_btn" %>    
                         <%end%>
                     </div>
                     <!-- <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">

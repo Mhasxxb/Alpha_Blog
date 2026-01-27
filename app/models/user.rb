@@ -1,6 +1,6 @@
 class User <  ApplicationRecord
   before_save :downcase_email
-  has_many :articles
+  has_many :articles, dependent: :destroy 
   validates :username, presence: true, 
                       uniqueness: { case_sensitive: false }, 
                       length: {minimum: 3, maximum: 25}
