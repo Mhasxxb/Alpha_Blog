@@ -18,13 +18,19 @@
         <%= @article.updated_at %>
     </p>
 <%end%> -->
-<div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 70px;">
+<div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top:70px;">
     <div class="card">
         <div class="card-header text-muted text-center">
             <p class="mb-0 font-italic">By: <span class="font-italic"><%= link_to "#{@article.user.username}", user_path(@article.user.id), style:"color:#717171" %></span></p>
+            <% if @article.categories.any? %>
+                <% @article.categories.each do |category| %>
+                    <span style="background-color: rgb(76, 240, 76); padding: 5px; border-radius: 15px;"><%= link_to "#{category.name}", category_path(category.id), style: "color: grey;"%></span>
+                    &nbsp;
+                <%end%>            
+            <%end%>
         </div>
         <div class="card-body">
-            <h2 class="card-title">
+            <h2 class="card-title" style="color: rgb(24, 175, 24);">
                 <%= @article.title %>
             </h2>
             <p class="card-text">

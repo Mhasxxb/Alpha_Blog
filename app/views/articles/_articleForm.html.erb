@@ -22,6 +22,13 @@ via simple HTML request -->
                <%= form.label :description, class: "col-2 col-form-label" %>
                <%= form.text_area :description, class: "col-8 form-control", rows: 5 %>
            </div>
+
+           <div class="form-group row" style="display: flex; justify-content: space-around; width: 80%; margin-left: 9%;">
+               <%= form.label :categories, class: "col-2 col-form-label" %>
+               <%= form.collection_select(:category_ids, Category.all, :id, :name,
+                                            { prompt: "Make your selsction below. (ctrl + click for multiple)"}, {multiple: true, class: "custom-select", style:"width: 66.5%"}) %>
+           </div>
+
             <div style="text-align: center; margin: 0.3%;">
                <%= form.submit class: "article_card_btn", id: "edit_btn"%>
             </div>

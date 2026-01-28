@@ -1,3 +1,53 @@
 <%= render "shared/flash_msgs" %>
 
-<h1>Category: <%= @category.name %></h1>
+<h1 class="text-center" style="text-decoration: underline; margin: 20px;"><%= @category.name %></h1>
+<% if logged_in? && current_user.admin? %>
+    <div class="text-center" style="margin: 20px;" ><%= button_to "Edit category",  edit_category_path(@category), method: :get,  class: "article_card_btn", id: "edit_btn_category" %></div>
+<%end%>
+<% if @articles.any? %>
+    <div class="flickr_pagination" style="margin: 0% 40%;">
+        <%= will_paginate @articles, previous_label: "Previous", next_label: "Next", :container => true %>
+    </div>
+        <% @articles.each do |article| %>
+            <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
+                <div class="card">
+                    <div class="card-header text-muted text-center">
+                        <p class="mb-0 font-italic">By: <span class="font-italic"><%= link_to "#{article.user.username}", user_path(article.user.id), style:"color:#717171" %></span></p>
+                        <% if article.categories.any? %>
+                            <% article.categories.each do |category| %>
+                                <span style="background-color: rgb(76, 240, 76); padding: 5px; border-radius: 15px;"><%= link_to "#{category.name}", category_path(category.id), style: "color: grey;", class:"font-italic" %></span>
+                                &nbsp;
+                            <%end%>            
+                        <%end%>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h2>
+                        <p class="card-text"><%= truncate(article.description, length: 140) %></p>
+
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width:10%;">
+                                <%= button_to "Show", article_path(article), method: :get, class: "article_card_btn", id: "show_btn" %> 
+                                <% if logged_in? && (current_user.id == article.user_id || current_user.admin ) %>
+                                    <%= button_to "Edit", edit_article_path(article), method: :get, class: "article_card_btn", id: "edit_btn" %> 
+                                <%end%>   
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                                <% if logged_in? && (current_user.id == article.user_id || current_user.admin ) %>
+                                    <%= button_to "Delete", article_path(article), method: :delete, class: "article_card_btn", id: "del_btn", data: { confirm: "Are you sure?" } %> 
+                                <%end%>
+                            </div> 
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created <strong><%= time_ago_in_words(article.created_at) %></strong> ago
+                    </div>
+                </div>
+            </div>
+        <%end%>
+    <div class="flickr_pagination" style="margin: 0% 40%;">
+        <%= will_paginate @articles, previous_label: "Previous", next_label: "Next", :container => true %>
+    </div>
+<%else%>
+    <h2 class="text-center">Sorry, nothing to show yet.</h2>
+<%end%>

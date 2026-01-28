@@ -61,6 +61,12 @@
         <div class="card">
              <div class="card-header text-muted text-center">
                 <p class="mb-0 font-italic">By: <span class="font-italic"><%= link_to "#{article.user.username}", user_path(article.user.id), style:"color:#717171" %></span></p>
+                <% if article.categories.any? %>
+                    <% article.categories.each do |category| %>
+                        <span style="background-color: rgb(76, 240, 76); padding: 5px; border-radius: 15px;"><%= link_to "#{category.name}", category_path(category.id), style: "color: grey;", class:"font-italic" %></span>
+                        &nbsp;
+                    <%end%>            
+                <%end%>
             </div>
             <div class="card-body">
                 <h2 class="card-title"><%= link_to article.title, article_path(article), style:"color:rgb(24, 175, 24);" %></h2>
@@ -85,7 +91,7 @@
                 Created <strong><%= time_ago_in_words(article.created_at) %></strong> ago
             </div>
         </div>
-</div>
+    </div>
 <% end %>
 
 <div class="flickr_pagination" style="margin: 0% 40%; margin-bottom: 2%;">

@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
     # @article.title = title
     # @article.description = description
     # this will work but best practice is:
-
+    byebug
     @article = Article.new(params_of_article)
     @article.user = current_user
     if @article.save
@@ -75,7 +75,7 @@ class ArticlesController < ApplicationController
     check = ((@article.title == params[:article][:title]) and (@article.description == params[:article][:description]))
     if check
 
-      flash[:alert] = "No changes were made."
+      flash[:notice] = "No changes were made."
       redirect_to @article
 
     else
@@ -112,7 +112,7 @@ class ArticlesController < ApplicationController
   end
 
   def params_of_article
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
 
   def require_same_user

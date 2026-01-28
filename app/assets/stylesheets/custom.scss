@@ -79,6 +79,19 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 5px;
     padding: 4px 6px;
 }
+#edit_btn_category{
+    color: rgb(75, 162, 184);
+    border: rgb(75, 162, 184) solid 1px;
+    border-radius: 5px;
+    padding: 4px 6px;
+    background-color: beige;
+}
+#edit_btn_category:hover{
+    background-color: rgb(75, 162, 184);
+    border: rgb(75, 162, 184) solid 1px;
+    color: white;
+    transition: 0.3s;
+}
 #del_btn{
     color: rgb(222, 20, 20);
     border: rgb(222, 20, 20) solid 1px;
