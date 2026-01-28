@@ -1,0 +1,27 @@
+<%= render "shared/flash_msgs" %>
+
+<h1 style="text-decoration: underline; text-align: center; margin: 20px;">Categories</h1>
+
+<div class="flickr_pagination" style="margin: 0% 40%;">
+    <%= will_paginate @articles, previous_label: "Previous", next_label: "Next", :container => true %>
+</div>
+
+<% @categories.each do |category| %>
+    <div class="container shadow p-3 mb-5 bg-light rounded" style="margin-top: 20px;">
+        <div class="card">
+             <div class="card-header text-muted text-center">
+                Blog category
+            </div>
+            <div class="card-body">
+                <h2 class="card-title"><%= link_to category.name, category_path(category), style:"color:rgb(24, 175, 24);" %></h2>
+            </div>
+            <div class="card-footer text-muted">
+                Created <strong><%= time_ago_in_words(category.created_at) %></strong> ago
+            </div>
+        </div>
+</div>
+<% end %>
+
+<div class="flickr_pagination" style="margin: 0% 40%;">
+    <%= will_paginate @articles, previous_label: "Previous", next_label: "Next", :container => true %>
+</div>

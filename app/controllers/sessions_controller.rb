@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
 
   def new
     @user = User.new
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
     email = params[:session][:email]
     username = params[:session][:username]
     password = params[:session][:password]
-    # byebug
+    byebug
     check = password == ''
     if((username == '') and (email != ''))
 
