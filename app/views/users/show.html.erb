@@ -1,3 +1,4 @@
+<%= render "shared/flash_msgs" %>
 
 <div class="main-content">
   <div class="container mt-7">
@@ -19,7 +20,11 @@
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
-                <a href="" class="go-back-home">@<%= @user.username %>'s profile</a>
+                <% if @user == current_user %>
+                  <%= link_to "Edit your profile", edit_user_path(@user), class: "go-back-home" %>
+                  <%= link_to "Delete profile", user_path(@user.id), method: :delete, class: "go-back-home", style:"color: red", data: { confirm: "Are you sure?" } %>
+                <%end%>
+                <!-- <a href="edit" class="go-back-home">Edit your profile</a> -->
               </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
@@ -53,10 +58,13 @@
                 <hr class="my-4" style="background-color: #919191;">
               
                 <div class="more-content text-left" id="content" style="display: none;">
-                    <% @user.articles.each do |article| %>
+                    <% @articles.each do |article| %>
                       <a class="go-back-home"  href="#"><%= link_to "#{article.title}", article_path(article), class: "go-back-home" %></a>
                       <hr style="background-color: #919191;">
                     <% end %>
+                    <div class="flickr_pagination">
+                      <%= will_paginate @articles, previous_label: "Previous", next_label: "Next", :container => true %>
+                    </div>
                 </div>
 
                 <!-- image add karni hai or show page proper ready karna hai  -->
@@ -75,7 +83,6 @@
   function showAndHide(){
     const toggle = document.getElementById("toggle")
     const content = document.getElementById("content")
-
     console.log(content);
     if(content.style.display === "block"){
       content.style.display = "none"

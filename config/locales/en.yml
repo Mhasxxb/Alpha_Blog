@@ -30,4 +30,30 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: "can't be blank"
+            description:
+              blank: "can't be blank"
+            category_id:
+              blank: "must be selected"
+  articles:
+    actions:
+      created: "Article created successfully"
+      updated: "Article updated successfully"
+      deleted: "Article deleted successfully"
+      invalid: "Invalid article data"
+      not_found: "Article not found"
+  errors:
+    unauthorized: "You are not authorized to perform this action"
+    missing_params: "Required parameters are missing"
+    server_error: "Something went wrong, please try again"
+    already_exists: "Record already exists"
+    limit_invalid: "Limit must be greater than 0"
+    offset_invalid: "Offset cannot be negative"
+    internal_server_error: "An internal server error just occured"
+    not_found: "Record not found"
