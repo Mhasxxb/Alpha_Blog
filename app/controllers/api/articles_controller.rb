@@ -22,11 +22,11 @@ module Api
                status: :unprocessable_entity
       end
     end
-    
+
     # GET /api/articles
     def index
       limit = params.fetch(:limit, 3).to_i
-      offset = params.fetch(:offset, 0).to_i
+      offset = params.fetch(:offset, 0).to_
 
       return render json: { error: I18n.t('errors.limit_invalid') }, status: :unprocessable_entity if limit <= 0
       return render json: { error: I18n.t('errors.offset_invalid') }, status: :unprocessable_entity if offset.negative?
