@@ -1,0 +1,28 @@
+name: "Gemini Code Reviewer"
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  gemini-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Set up Ruby, Node, or Python if needed depending on reviewer requirements
+      # For example, if the action uses Node:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Run Gemini Code Reviewer
+      - name: Run Gemini Review
+        uses: your-org/gemini-code-reviewer-action@vX.Y.Z
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          openai_api_key: ${{ secrets.GEMINI_API_KEY }}
+          # Optional config options below
+          review_level: "detailed"
+          fail_on_issue: false
