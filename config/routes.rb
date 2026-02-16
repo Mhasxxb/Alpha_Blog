@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
+  namespace :api do
+    root 'pages#home'
+    get 'about', to: 'pages#about'
+    # resources :articles, only: [:show, "index", :new, "create", :edit, "update"] ##read the comment
+    resources :articles
+    get 'signup', to: 'users#new'
+    post 'signup', to: 'users#create'
 
-  root 'pages#home'
-  get 'about', to: 'pages#about'
-  # resources :articles, only: [:show, "index", :new, "create", :edit, "update"] ##read the comment
-  resources :articles
-  get 'signup', to: 'users#new'
-  post 'signup', to: 'users#create'
+    resources :users, except: ['new', 'create']
 
-  resources :users, except: ['new', 'create']
+    get 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-
-  resources "categories", except: ['destroy']
-
+    resources "categories"
+  end
 end
 
 # 1. Memory Usage (Object Recycling)

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  def hello
-    render html: 'Chaaaa'
-  end
+  # def hello
+  #   render html: 'Chaaaa'
+  # end
 
   helper_method :current_user, :logged_in?
 
